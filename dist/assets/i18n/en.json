@@ -1,0 +1,64 @@
+{
+  "HOME": {
+    "Home": "Home",
+    "Logout": "Logout",
+    "Help": "Help",
+    "Ok" : "Ok",
+    "Application name": "User Maintenance"
+  },
+  "Add_User": {
+    "Heading": "Add Users",
+    "EmpId": "User Id",
+    "Application name": "Application name",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "EmailID": "Email Address",
+    "TOC": "Train Operating Company",
+    "UserType": "User type",
+    "Language": "Language",
+    "Role": "Role",
+    "Save": "Save",
+    "Reset": "Undo",
+    "RoleOutLine": "Role *",
+    "Mobile Supervisor": "Mobile Supervisor",
+    "Want To Continue": "do you want to continue",
+    "Data Not Saved": "You have not saved your changes, do you want to lose them?",
+    "Mobile User": "Mobile User",
+    "Dialog Confirmation No" : "No",
+    "Dialog Confirmation Yes" : "Yes",
+    "EmployeeId Validation": "User Id is required. User Id must be at least one digit.",
+    "FirstName Validation":"First Name is required. First name must have between 1 and 16 letters.",
+    "LastName Validation":"Last Name is required. Last name must have between 1 and 35 letters.",
+    "Email Validation":"Email address is not valid. Email address should have the format: name@domain.",
+    "NO_ROLES_EXISTS" : "No roles are available",
+    "No Valid Permission" : "You are not authorized to view this page."
+  },
+  "Edit_User": {
+    "Heading": "Edit User",
+    "ForcePasswordChange": "New password",
+    "TerminationDate" : "Inactive from :"
+  },
+  
+  "Maintain_User": {
+    "Add": "Add User",
+    "Heading": "TIS Users",
+    "Id": "Id",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Toc": "TOC",
+    "Status": "Status",
+    "NoData": "No Data...",
+    "LoadingData": "Loading Data..."
+  },
+  "User_Help": {
+    "Content": "Contents",
+    "Features": "Features",
+    "List_TIS_Users" : "List TIS Users",
+    "Add_TIS_User" : "Add TIS User",
+    "Edit_TIS_User" : "Edit TIS User",
+    "STARhub_Account" : "STARhub Account",
+    "Make_User_Inactive" : "Make Inactive",
+    "Password_Change" : "New Password",
+    "Error_outline" : "Error Messages"
+  }
+}

@@ -1,0 +1,121 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  WebsiteURL:
+    Type: String
+  AppName:
+    Type: String
+  Branch:
+    Type: String
+  Stage:
+    Type: String
+  CertARN:
+    Type: String
+  EnvironmentStackMakerLambdaArn:
+    Type: 'AWS::SSM::Parameter::Value<String>'
+    Default: stack-maker-lambda-arn
+  CoreAccountID:
+    Type: String
+  ResourceS3BucketName:
+    Type: String
+
+Conditions:
+  IsMasterBranch: !Equals [ !Ref Branch, 'master' ]
+  IsProdStage: !Equals [ !Ref Stage, 'prod' ]
+
+Resources:
+  UICloudFront:
+    # Cloudfront distribution for presenting the single page app UI.
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+          # This domain name has to be the URL as it is displayed in the
+          # bucket properties - website url without the http://
+          - DomainName: !Select [2, !Split ["/", !Ref WebsiteURL]]
+            Id: wwwBucket
+            OriginPath: !Sub "/${AppName}/${Branch}/${Stage}"
+            CustomOriginConfig:
+              HTTPPort: '80'
+              HTTPSPort: '443'
+              OriginProtocolPolicy: http-only
+        Aliases:
+          - !If
+            - IsProdStage
+            - !Sub '${AppName}.star-hub-services.net'
+            - !Sub '${AppName}-${Branch}.${Stage}.star-hub-services.net'
+        Enabled: 'true'
+        Comment: UI project
+        DefaultRootObject: ./index.html
+        CustomErrorResponses:
+          - ErrorCachingMinTTL: 300
+            ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+          - ErrorCachingMinTTL: 300
+            ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+        DefaultCacheBehavior:
+          ForwardedValues:
+            QueryString: false
+          TargetOriginId: wwwBucket
+          ViewerProtocolPolicy: redirect-to-https
+        CacheBehaviors:
+          # We do not want to cache index.html as the ui
+          # is a single page application.  Assets have new file names per
+          # release so they are refreshed automatically, however index does not
+          # get a name change so don't cache.
+          - ForwardedValues:
+              QueryString: false
+            PathPattern: index.html
+            TargetOriginId: wwwBucket
+            ViewerProtocolPolicy: redirect-to-https
+            DefaultTTL: 0
+            MaxTTL: 0
+            MaxTTL: 0
+        ViewerCertificate:
+          AcmCertificateArn: !Ref CertARN
+          MinimumProtocolVersion: TLSv1.1_2016
+          SslSupportMethod: sni-only
+
+  ProjectEnvironmentStack:
+    Type: "AWS::CloudFormation::CustomResource"
+    Version: '1.0'
+    DependsOn: UICloudFront
+    Properties:
+      ServiceToken: !Ref EnvironmentStackMakerLambdaArn
+      RoleArn: !Sub arn:aws:iam::${CoreAccountID}:role/CoreAccountRole
+      StackName: !Sub DNS-${AWS::StackName}
+      Region: !Ref AWS::Region
+      CfnParameters:
+        CloudFrontDomainName: !GetAtt UICloudFront.DomainName
+        DNSName:
+          !If
+          - IsProdStage
+          - !Sub '${AppName}.star-hub-services.net'
+          - !Sub '${AppName}-${Branch}.${Stage}.star-hub-services.net'
+        ResourceS3BucketName: !Ref ResourceS3BucketName
+      Capabilities:
+        - CAPABILITY_NAMED_IAM
+      TemplateBody: |
+        AWSTemplateFormatVersion: '2010-09-09'
+        Parameters:
+          CloudFrontDomainName:
+            Type: String
+          DNSName:
+            Type: String
+          ResourceS3BucketName:
+            Type: String
+        Resources:
+          Route53Stack:
+            Type: AWS::CloudFormation::Stack
+            Properties:
+              Parameters:
+                Alias: !Ref CloudFrontDomainName
+                DNSName: !Ref DNSName
+              TemplateURL: !Sub https://${ResourceS3BucketName}.s3.amazonaws.com/templates/common/route53/route53-A-record.template.yaml
+              TimeoutInMinutes: 10
+        Outputs:
+          CustomDNS:
+            Value: !Ref DNSName
+            Description: DNS entry for new web service or ui project.

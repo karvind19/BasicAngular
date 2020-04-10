@@ -1,0 +1,63 @@
+import { NgModule } from '@angular/core';
+import {MatMenuModule} from '@angular/material/menu';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatDividerModule,
+  MatSelectModule,
+  MatRadioModule,
+  MatIconModule,
+  MatDialogModule,
+  MatProgressSpinnerModule,
+  MatSortModule,
+  MatTableModule,
+  MatCardModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatPaginatorModule,
+} from '@angular/material';
+
+@NgModule({
+  imports: [
+     MatButtonModule,
+        MatInputModule,
+        MatMenuModule,
+        MatCheckboxModule,
+        MatToolbarModule,
+        MatTooltipModule,
+        MatDividerModule,
+        MatSelectModule,
+        MatRadioModule,
+        MatIconModule,
+        MatDialogModule,
+        MatProgressSpinnerModule,
+        MatSortModule,
+        MatTableModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatPaginatorModule,
+  ],
+  exports: [
+    MatButtonModule,
+    MatMenuModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatDividerModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatIconModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatCheckboxModule, 
+    MatTableModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+  ],
+  declarations: []
+})
+export class MaterialModule { }

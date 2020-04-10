@@ -1,0 +1,28 @@
+{
+  "HOME": {
+    "Tab1": "Search Fr",
+    "Tab2": "Add User Fr",
+    "Tab3": "Home Fr"
+  },
+  "Add_User": {
+    "Heading": "ADD Users Fr",
+    "EmpId": "User Id Fr",
+    "FirstName": "First Name Fr",
+    "LastName": "Last Name Fr",
+    "EmailID": "Email Address Fr",
+    "AppName": "Application name",
+    "TOC": "Train Operating Company Fr",
+    "UserType": "User type Fr",
+    "Language": "Language Fr",
+    "Role": "Role fr",
+    "Save": "Save fr",
+    "RoleOutLine": "Role fr",
+    "Mobile Supervisor": "Mobile Supervisor fr",
+    "Mobile User": "Mobile User fr",
+    "EmployeeId Validation": "User Id is required. User Id must be at least one digit. Fr",
+    "FirstName Validation":"First Name is required. First name must have between 1 and 16 characters. Fr",
+    "LastName Validation":"Last Name is required. Last name must have between 1 and 35 characters. Fr",
+    "Email Validation":"Email address not valid. Email address be of the required format (name@domain). Fr",
+    "No Valid Permission" : "You are not authorized to view this page. Fr"
+  }
+}

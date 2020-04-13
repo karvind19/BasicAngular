@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { of, Observable } from 'rxjs';
+import { timer, of, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { switchMap, takeUntil, catchError } from 'rxjs/operators';
 
 
 /**

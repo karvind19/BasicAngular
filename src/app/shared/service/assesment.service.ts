@@ -25,7 +25,7 @@ export class AssesmentService {
 
  
   getAssesmentData(): Observable<any> {
-    return this.http.get<any>(this.getAssesmentAPIURL);
+    return;
   }
 
 }

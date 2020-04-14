@@ -23,7 +23,6 @@ export class AssesmentService {
   // Variable to return response for defined test criterias
   respseReturn: string;
 
- 
   getAssesmentData(): Observable<any> {
     return;
   }

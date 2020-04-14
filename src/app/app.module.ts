@@ -11,7 +11,7 @@ import { LoggerModule } from 'ngx-logger';
 import { environment } from 'src/environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AssesmentService } from './shared/service/Assesment.service';
-import { APIInterceptorService, DEFAULT_TIMEOUT } from './shared/service/api-interceptor.service';
+// import { APIInterceptorService, DEFAULT_TIMEOUT } from './shared/service/api-interceptor.service';
 import { FirstComponent } from './assessment/first/first.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -40,17 +40,17 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     LoggerModule.forRoot(environment.logging),
   ],
-  providers: [AssesmentService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: APIInterceptorService,
-      multi: true
-    },
-    {
-      provide: DEFAULT_TIMEOUT,
-      useValue: 20000
-    }
-  ],
+  // providers: [AssesmentService,
+  //   {
+  //     provide: HTTP_INTERCEPTORS,
+  //     useClass: APIInterceptorService,
+  //     multi: true
+  //   },
+  //   {
+  //     provide: DEFAULT_TIMEOUT,
+  //     useValue: 20000
+  //   }
+  // ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

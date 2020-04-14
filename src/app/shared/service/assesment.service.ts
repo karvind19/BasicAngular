@@ -23,8 +23,10 @@ export class AssesmentService {
   // Variable to return response for defined test criterias
   respseReturn: string;
 
+  private modals: any[] = [];
+
   getAssesmentData(): Observable<any> {
-    return;
+    return this.http.get<any>(this.getAssesmentAPIURL);
   }
 
 }

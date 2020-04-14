@@ -5,7 +5,7 @@ import { NgxLoggerLevel } from 'ngx-logger';
 
 export const environment = {
   production: false,
-  assessment_api_url: '',
+  assessment_api_url: 'https://hn.algolia.com/api/v1/search_by_date?tags=story',
   logging: {
     serverLoggingUrl: '/api/logs',
     level: NgxLoggerLevel.ERROR,

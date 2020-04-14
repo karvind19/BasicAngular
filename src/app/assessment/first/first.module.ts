@@ -5,12 +5,14 @@ import { MaterialModule } from 'src/app/shared/material.module';
 import { LoggerModule } from 'ngx-logger';
 import { environment } from 'src/environments/environment';
 import { FirstComponent } from './first.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
     imports: [
       CommonModule,
      // AppRoutingModule,
+  FormsModule,
       MaterialModule,
       FirstRoutingModule,
       LoggerModule.forRoot(environment.logging)

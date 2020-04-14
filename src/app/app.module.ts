@@ -12,16 +12,16 @@ import { environment } from 'src/environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AssesmentService } from './shared/service/Assesment.service';
 // import { APIInterceptorService, DEFAULT_TIMEOUT } from './shared/service/api-interceptor.service';
-import { FirstComponent } from './assessment/first/first.component';
+import { FirstComponent, DialogOverviewExampleDialog } from './assessment/first/first.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent, DialogOverviewExampleDialog
   ],
-  entryComponents: [],
+  entryComponents: [DialogOverviewExampleDialog],
   imports: [
     BrowserModule,
     HttpClientModule,

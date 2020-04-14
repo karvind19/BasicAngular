@@ -1,7 +1,7 @@
 <div class="search-div">
     <mat-form-field class="search-form-field">
-      <input matInput [(ngModel)]="searchKey" placeholder="Filter" autocomplete="off" (keyup)="applyFilter()">
-      <Button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+      <input matInput [(ngModel)]="objSearchKey" placeholder="Filter" autocomplete="off" (keyup)="applyFilter($event.target.value)">
+      <Button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="objSearchKey" (click)="onSearchClear()">
         <mat-icon>close</mat-icon>
       </Button>
     </mat-form-field>
@@ -33,6 +33,6 @@
             <mat-cell *matCellDef="let element"> {{element.author}} </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-        <mat-row (click)="showRawJson()" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-row (click)="openDialog()" *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
 </div>

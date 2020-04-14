@@ -9,14 +9,13 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-    imports: [
-      CommonModule,
-     // AppRoutingModule,
-  FormsModule,
-      MaterialModule,
-      FirstRoutingModule,
-      LoggerModule.forRoot(environment.logging)
-    ],
-    declarations: [FirstComponent]
-  }) 
+  imports: [
+    CommonModule,
+    FormsModule,
+    MaterialModule,
+    FirstRoutingModule,
+    LoggerModule.forRoot(environment.logging)
+  ],
+  declarations: [FirstComponent]
+})
 export class FirstModule { }

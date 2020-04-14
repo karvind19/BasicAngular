@@ -1,0 +1,8 @@
+<div mat-dialog-content>
+   <p>
+    {{data.jsonData | json }}
+   </p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close] (click)="onCloseClick()">Close</button>
+  </div>
